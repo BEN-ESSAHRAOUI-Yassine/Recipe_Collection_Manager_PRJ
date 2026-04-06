@@ -6,6 +6,6 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>mon projet</h1>
+    <h1>mon projet is recipe</h1>
 </body>
 </html>
