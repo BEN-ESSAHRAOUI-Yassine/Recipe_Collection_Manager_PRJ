@@ -1,5 +1,5 @@
 <?php
-define('ROOT', dirname(__DIR__));
+
 class Database {
     
     private static $instance = null;
