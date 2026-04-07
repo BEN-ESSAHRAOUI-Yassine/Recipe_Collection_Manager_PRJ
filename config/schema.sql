@@ -36,8 +36,8 @@ INSERT INTO categories (name) VALUES
 ('Beverage');
 
 INSERT INTO users (username, email, password, role) VALUES
-('admin', 'admin@mail.com', '$2y$10$Nk2jaWseOPC9G6er/oh6MudzvMMdtLDlV.pkW/jIHZJAKXcSEQT.e', 'admin'),//adminpass
-('chef_ali', 'ali@mail.com', '$2y$10$yUoCxmuUpv5w7uTA/RRgDOuBaOPQow1J8kNDMXF1MLE90aXIuapxa', 'chef'),//chefpass
+('admin', 'admin@mail.com', '$2y$10$Nk2jaWseOPC9G6er/oh6MudzvMMdtLDlV.pkW/jIHZJAKXcSEQT.e', 'admin'), /*adminpass*/
+('chef_ali', 'ali@mail.com', '$2y$10$yUoCxmuUpv5w7uTA/RRgDOuBaOPQow1J8kNDMXF1MLE90aXIuapxa', 'chef'), /*chefpass*/
 ('chef_sara', 'sara@mail.com', '$2y$10$yUoCxmuUpv5w7uTA/RRgDOuBaOPQow1J8kNDMXF1MLE90aXIuapxa', 'chef');
 
 INSERT INTO recipes 
