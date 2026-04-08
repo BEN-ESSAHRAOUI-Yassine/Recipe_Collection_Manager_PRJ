@@ -68,18 +68,17 @@ class User {
     }
 
     // Get all users with optional search and sort
-    public function getAllUsers($search = '', $sort = 'id', $order = 'ASC', $limit = 50, $offset = 0) {
-
-        // Only allow safe sort columns
+    public function getAllUsers($search = '', $sort = 'id', $order = 'ASC', $limit = null, $offset = 0)
+    {
         $sortMap = [
             'id' => 'id',
-            'username'    => 'username',
-            'email'   => 'email',
-            'role'    => 'role',
+            'username' => 'username',
+            'email' => 'email',
+            'role' => 'role',
             'created_at' => 'created_at',
         ];
 
-        $sort  = $sortMap[$sort]  ?? 'id';
+        $sort  = $sortMap[$sort] ?? 'id';
         $order = strtoupper($order) === 'DESC' ? 'DESC' : 'ASC';
 
         $sql = "SELECT * FROM users WHERE 1";
@@ -88,7 +87,12 @@ class User {
             $sql .= " AND (username LIKE :search OR email LIKE :search)";
         }
 
-        $sql .= " ORDER BY $sort $order LIMIT :limit OFFSET :offset";
+        $sql .= " ORDER BY $sort $order";
+
+        // ✅ Only apply LIMIT if explicitly used
+        if ($limit !== null) {
+            $sql .= " LIMIT :limit OFFSET :offset";
+        }
 
         $stmt = $this->db->prepare($sql);
 
@@ -96,8 +100,10 @@ class User {
             $stmt->bindValue(':search', "%$search%");
         }
 
-        $stmt->bindValue(':limit',  (int)$limit,  PDO::PARAM_INT);
-        $stmt->bindValue(':offset', (int)$offset, PDO::PARAM_INT);
+        if ($limit !== null) {
+            $stmt->bindValue(':limit', (int)$limit, PDO::PARAM_INT);
+            $stmt->bindValue(':offset', (int)$offset, PDO::PARAM_INT);
+        }
 
         $stmt->execute();
 

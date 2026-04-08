@@ -94,7 +94,7 @@ class AdminController extends BaseController {
             exit;
         }
 
-        $id    = (int)($_POST['id_user'] ?? 0);
+        $id    = (int)($_POST['id'] ?? 0);
         $name  = Security::sanitize($_POST['name']  ?? '');
         $email = Security::sanitize($_POST['email'] ?? '');
 
@@ -115,7 +115,7 @@ class AdminController extends BaseController {
         exit;
     }
 
-    public function deleteUser() {
+    public function deleteUserform() {
 
         // CSRF protection
         if (!Security::verifyCsrf($_POST['csrf'] ?? '')) {
@@ -124,16 +124,16 @@ class AdminController extends BaseController {
             exit;
         }
 
-        $id = (int)($_POST['id_user'] ?? 0);
+        $id = (int)($_POST['id'] ?? 0);
 
         if ($id <= 0) {
             Security::setFlash('error', 'Invalid user.');
             header("Location: " . BASE_URL . "?url=admin/users");
             exit;
         }
-
-        // ❌ Prevent admin from deleting himself
-        if ($id === $_SESSION['user']['id_user']) {
+        
+        //  Prevent admin from deleting himself
+        if ($id === $_SESSION['user']['id']) {
             Security::setFlash('error', 'You cannot delete your own account.');
             header("Location: " . BASE_URL . "?url=admin/users");
             exit;

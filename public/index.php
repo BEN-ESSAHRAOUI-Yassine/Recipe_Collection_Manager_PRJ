@@ -119,26 +119,26 @@ switch ($segments[0]) {
 
             case 'create-user':
                 requireMethod('GET');
-                $controller->createUser();
+                $controller->createUserform();
                 break;
 
             case 'store-user':
                 requireMethod('POST');
-                $controller->storeUser();
+                $controller->storeUserform();
                 break;
 
             case 'edit-user':
-                $controller->editUser($id);
+                $controller->editUserform($id);
                 break;
 
             case 'update-user':
                 requireMethod('POST');
-                $controller->updateUser($id);
+                $controller->updateUserform($id);
                 break;
 
             case 'delete-user':
                 requireMethod('POST');
-                $controller->deleteUser($id);
+                $controller->deleteUserform($id);
                 break;
 
             default:
