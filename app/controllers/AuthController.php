@@ -85,7 +85,7 @@ class AuthController extends BaseController {
             exit;
         }
 
-        // First user becomes admin, everyone else becomes student
+        // First user becomes admin, everyone else becomes chef
         $role = $userModel->adminExists() ? 'chef' : 'admin';
 
         $id = $userModel->createUser(
