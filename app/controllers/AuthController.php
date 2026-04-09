@@ -32,12 +32,6 @@ class AuthController extends BaseController {
 
         if ($user && password_verify($password, $user['password'])) {
 
-            if ($user['status'] === 'Disabled') {
-                Security::setFlash('error', 'Your account has been disabled. Please contact an admin.');
-                header("Location: " . BASE_URL . "?url=login");
-                exit;
-            }
-
             // Save user info in session
             $_SESSION['user'] = $user;
             header("Location: " . BASE_URL . "?url=dashboard");
