@@ -29,6 +29,18 @@ CREATE TABLE IF NOT EXISTS recipes (
     FOREIGN KEY (id_category) REFERENCES categories(id) ON DELETE SET NULL
 );
 
+CREATE TABLE favorites (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_user INT,
+    id_recipe INT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+
+    UNIQUE (id_user, id_recipe),
+
+    FOREIGN KEY (id_user) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (id_recipe) REFERENCES recipes(id) ON DELETE CASCADE
+);
+
 INSERT INTO categories (name) VALUES
 ('Dessert'),
 ('Main Course'),

@@ -223,7 +223,28 @@ switch ($segments[0]) {
                 exit;
         }
         break;
+    
+    case 'favorite':
+        $controller = new FavoriteController();
+        $action = $segments[1] ?? 'index';
+        $id = $segments[2] ?? null;
 
+        switch ($action) {
+            case 'index':
+                $controller->index();
+                break;
+            case 'add':
+                $controller->add($id);
+                break;
+            case 'remove':
+                $controller->remove($id);
+                break;
+            
+            default:
+                header("Location: " . BASE_URL . "?url=recipe/index");
+                exit;
+        }
+        break;
     /* ---------- 404 ---------- */
     default:
         http_response_code(404);
