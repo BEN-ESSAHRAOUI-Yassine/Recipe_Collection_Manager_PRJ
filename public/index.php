@@ -167,6 +167,11 @@ switch ($segments[0]) {
                 requireMethod('POST');
                 $controller->store();
                 break;
+                 case 'show': 
+                     $controller->show($id);
+                     
+                break;
+
 
             case 'edit':
                 $controller->edit($id);
@@ -181,6 +186,7 @@ switch ($segments[0]) {
                 requireMethod('POST');
                 $controller->delete($id);
                 break;
+                  
 
             default:
                 header("Location: " . BASE_URL . "?url=recipe/index");
@@ -217,7 +223,7 @@ switch ($segments[0]) {
                 requireMethod('POST');
                 $controller->update($id);
                 break;
-
+              
             default:
                 header("Location: " . BASE_URL . "?url=category/index");
                 exit;

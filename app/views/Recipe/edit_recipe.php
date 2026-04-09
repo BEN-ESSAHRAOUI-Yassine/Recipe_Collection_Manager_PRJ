@@ -1,17 +1,16 @@
 <?php
 $recipe     = $recipe     ?? [];
 $categories = $categories ?? [];
-$flash      = $flash      ?? null;
 ?>
 
-<?php if ($flash): ?>
-    <p style="color: <?= $flash['type'] === 'success' ? 'green' : 'red' ?>;">
-        <?= htmlspecialchars($flash['message']) ?>
-    </p>
+<?php if (!empty($_SESSION['flash'])): ?>
+    <p style="color: green;"><?= htmlspecialchars($_SESSION['flash']) ?></p>
+    <?php unset($_SESSION['flash']); ?>
 <?php endif; ?>
 
 <h2>Modifier la recette</h2>
-<form method="POST" action="<?= BASE_URL ?>?url=recipe/update/<?= intval($recipe['id_recipe']) ?>">
+
+<form method="POST" action="<?= BASE_URL ?>?url=recipe/update/<?= intval($recipe['id']) ?>">
     <input type="hidden" name="csrf" value="<?= Security::csrf() ?>">
 
     <label>Titre :</label><br>
@@ -19,14 +18,10 @@ $flash      = $flash      ?? null;
            value="<?= htmlspecialchars($recipe['title'] ?? '') ?>" required><br><br>
 
     <label>Ingrédients :</label><br>
-    <textarea name="ingredients" required>
-        <?= htmlspecialchars($recipe['ingredients'] ?? '') ?>
-    </textarea><br><br>
+    <textarea name="ingredients" required><?= htmlspecialchars($recipe['ingredients'] ?? '') ?></textarea><br><br>
 
     <label>Instructions :</label><br>
-    <textarea name="instructions" required>
-        <?= htmlspecialchars($recipe['instructions'] ?? '') ?>
-    </textarea><br><br>
+    <textarea name="instructions" required><?= htmlspecialchars($recipe['instructions'] ?? '') ?></textarea><br><br>
 
     <label>Temps de préparation (min) :</label><br>
     <input type="number" name="prep_time"
