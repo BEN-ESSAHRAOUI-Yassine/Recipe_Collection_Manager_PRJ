@@ -1,11 +1,10 @@
-<?php
-if (isset($message) && !empty($message)) {
-    $color = ($message === "Cette catégorie existe déjà !") ? "red" : "green";
-    echo "<p style='color: $color;'>$message</p>";
-}
-?>
-
-<form method="POST" action="http://localhost/Recipe_Collection_Manager_PRJ/public/add_category.php">
+<?php $message = $_SESSION['flash'] ?? ''; unset($_SESSION['flash']); ?>
+<?php if (!empty($message)): ?>
+    <p style="color:<?= str_contains($message,'succès') ? 'green' : 'red' ?>">
+        <?= htmlspecialchars($message) ?>
+    </p>
+<?php endif; ?>
+<form method="POST" action="<?= BASE_URL ?>?url=category/store">
     <label for="name">Nom de la catégorie</label>
     <input id="name" type="text" name="name" placeholder="Nom catégorie" required>
     <button type="submit">Ajouter</button>
