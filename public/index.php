@@ -167,13 +167,13 @@ switch ($segments[0]) {
                 requireMethod('POST');
                 $controller->store();
                 break;
-                 case 'show': 
-                     $controller->show($id);
-                     
+            case 'show': 
+                requireMethod('POST');
+                $controller->show($id);
                 break;
 
-
             case 'edit':
+                requireMethod('POST');
                 $controller->edit($id);
                 break;
 
