@@ -1,7 +1,16 @@
-<?php $recipes = $recipes ?? []; ?>
+<?php
+$recipes = $recipes ?? [];
+$flash   = $flash   ?? null;
+?>
+
+<?php if ($flash): ?>
+    <p style="color: <?= $flash['type'] === 'success' ? 'green' : 'red' ?>;">
+        <?= htmlspecialchars($flash['message']) ?>
+    </p>
+<?php endif; ?>
 
 <h2>Mes Recettes</h2>
-<a href="/Recipe_Collection_Manager_PRJ/public/add_recipe.php">+ Ajouter une recette</a>
+<a href="<?= BASE_URL ?>?url=recipe/create">+ Ajouter une recette</a>
 <br><br>
 
 <?php if (!empty($recipes)): ?>
@@ -20,18 +29,27 @@
         <td><?= intval($recipe['prep_time']) ?></td>
         <td><?= htmlspecialchars($recipe['portions']) ?></td>
         <td>
-            <a href="/Recipe_Collection_Manager_PRJ/public/edit_recipe.php?id=<?= intval($recipe['id_recipe']) ?>">
+            <a href="<?= BASE_URL ?>?url=recipe/edit/<?= intval($recipe['id_recipe']) ?>">
                 Modifier
             </a>
             &nbsp;|&nbsp;
-            <a href="/Recipe_Collection_Manager_PRJ/public/delete_recipe.php?id=<?= intval($recipe['id_recipe']) ?>"
-               onclick="return confirm('Supprimer cette recette ?')">
-                Supprimer
-            </a>
+            <form method="POST"
+                  action="<?= BASE_URL ?>?url=recipe/delete/<?= intval($recipe['id_recipe']) ?>"
+                  onsubmit="return confirm('Supprimer cette recette ?')"
+                  style="display:inline; margin:0;">
+                <input type="hidden" name="csrf" value="<?= Security::csrf() ?>">
+                <button type="submit"
+                        style="background:none; border:none; color:blue; cursor:pointer; padding:0;">
+                    Supprimer
+                </button>
+            </form>
         </td>
     </tr>
     <?php endforeach; ?>
 </table>
+
 <?php else: ?>
-    <p>Aucune recette trouvée. <a href="/Recipe_Collection_Manager_PRJ/public/add_recipe.php">Ajoutez-en une !</a></p>
+    <p>Aucune recette trouvée.
+        <a href="<?= BASE_URL ?>?url=recipe/create">Ajoutez-en une !</a>
+    </p>
 <?php endif; ?>
