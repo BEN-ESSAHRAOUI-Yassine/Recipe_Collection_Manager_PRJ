@@ -12,10 +12,11 @@
     <h1>Recipe Collection Manager</h1>
     <nav>
         <?php if (isset($_SESSION['user'])): ?>
-            <a href="<?= BASE_URL ?>?url=dashboard">Dashboard</a>
+            <a href="<?= BASE_URL ?>?url=category/index">Category Dashboard</a>
+            <a href="<?= BASE_URL ?>?url=recipe/index">Recipe Dashboard</a>
             
             <?php if ($_SESSION['user']['role'] === 'admin'): ?>
-                <a href="<?= BASE_URL ?>?url=admin/users">Users</a>
+                <a href="<?= BASE_URL ?>?url=admin/users">User Dashboard</a>
             <?php endif; ?>
 
             <a href="<?= BASE_URL ?>?url=logout">Logout</a>
