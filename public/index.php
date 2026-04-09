@@ -173,6 +173,7 @@ switch ($segments[0]) {
                 break;
 
             case 'edit':
+                requireMethod('POST');
                 $controller->edit($id);
                 break;
 
