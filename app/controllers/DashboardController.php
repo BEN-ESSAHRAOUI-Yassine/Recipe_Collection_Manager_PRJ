@@ -14,10 +14,8 @@ class DashboardController extends BaseController {
 
         } elseif ($role === 'chef') {
 
-            $user_id = $_SESSION['user']['id'];
-            $recipes = (new Recipe())->getByUser(id);
-
-            $this->render('chef/dashboard', compact('recipes'));
+            //  Redirect recipe to index dashboard (default page)
+            header("Location: " . BASE_URL . "?url=recipe/index");
 
         } else {
 
