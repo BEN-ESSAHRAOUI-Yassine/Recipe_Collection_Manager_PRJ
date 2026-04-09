@@ -15,7 +15,7 @@ class DashboardController extends BaseController {
         } elseif ($role === 'chef') {
 
             $user_id = $_SESSION['user']['id'];
-            $recipes = (new Recipe())->getByUser($user_id);
+            $recipes = (new Recipe())->getByUser(id);
 
             $this->render('chef/dashboard', compact('recipes'));
 
