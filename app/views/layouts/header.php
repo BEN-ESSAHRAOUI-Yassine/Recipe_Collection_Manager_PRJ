@@ -13,6 +13,7 @@
     <nav>
         <?php if (isset($_SESSION['user'])): ?>
             <a href="<?= BASE_URL ?>?url=favorite/index">Favorites</a>
+            <a href="<?= BASE_URL ?>?url=note/index">My Notes</a>
             <a href="<?= BASE_URL ?>?url=category/index">Category Dashboard</a>
             <a href="<?= BASE_URL ?>?url=recipe/index">Recipe Dashboard</a>
             

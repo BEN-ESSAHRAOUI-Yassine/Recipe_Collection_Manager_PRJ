@@ -41,6 +41,18 @@ CREATE TABLE favorites (
     FOREIGN KEY (id_recipe) REFERENCES recipes(id) ON DELETE CASCADE
 );
 
+CREATE TABLE notes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_user INT,
+    id_recipe INT,
+    note TEXT,
+    rating INT CHECK (rating BETWEEN 1 AND 5),
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (id_user) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (id_recipe) REFERENCES recipes(id) ON DELETE CASCADE
+);
+
 INSERT INTO categories (name) VALUES
 ('Dessert'),
 ('Main Course'),

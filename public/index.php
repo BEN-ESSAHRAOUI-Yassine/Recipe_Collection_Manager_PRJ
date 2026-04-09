@@ -245,7 +245,28 @@ switch ($segments[0]) {
                 exit;
         }
         break;
-    /* ---------- 404 ---------- */
+    
+    case 'note':
+        $controller = new NoteController();
+        $action = $segments[1] ?? 'index';
+        $id = $segments[2] ?? null;
+
+        switch ($action) {
+            case 'index':
+                $controller->index();
+                break;
+            case 'save':
+                requireMethod('POST');
+                $controller->save($id);
+                break;
+            default:
+                header("Location: " . BASE_URL . "?url=recipe/index");
+                exit;
+
+        }
+        break;
+
+        /* ---------- 404 ---------- */
     default:
         http_response_code(404);
 
