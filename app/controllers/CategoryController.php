@@ -22,8 +22,8 @@ class CategoryController extends BaseController {
         $name   = htmlspecialchars(trim($_POST['name']));
         $result = $this->CategoryM->addCategory($name);
         $_SESSION['flash'] = ($result === "exists")
-            ? "Cette catégorie existe déjà !"
-            : "Catégorie ajoutée avec succès !";
+            ? "Cette categorie existe deja !"
+            : "Categorie ajoutee avec succes !";
         header("Location: " . BASE_URL . "?url=category/index");
         exit;
     }

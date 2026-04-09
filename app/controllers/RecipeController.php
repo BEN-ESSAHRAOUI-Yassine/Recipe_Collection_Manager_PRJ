@@ -8,13 +8,19 @@ class RecipeController extends BaseController {
         $this->categoryModel = new Category();
     }
 
-    public function index() {
-        $id_user = $_SESSION['user']['id'];
-        $recipes = $this->recipeModel->getRecipesByUser($id_user);
-        $message = $_SESSION['flash'] ?? '';
-        unset($_SESSION['flash']);
-        $this->render('Recipe/list_recipe', compact('recipes', 'message'));
-    }
+  public function index() {
+    $id_user  = $_SESSION['user']['id'];
+    $search   = trim($_GET['search']   ?? '');
+    $category = trim($_GET['category'] ?? '');
+
+    $recipes    = $this->recipeModel->searchRecipes($id_user, $search, $category);
+    $uniqueCats = $this->categoryModel->getCategories();
+
+    $message = $_SESSION['flash'] ?? '';
+    unset($_SESSION['flash']);
+
+    $this->render('Recipe/list_recipe', compact('recipes', 'uniqueCats', 'search', 'category', 'message'));
+}
 
     public function create() {
         $categories = $this->categoryModel->getCategories();
@@ -65,4 +71,13 @@ class RecipeController extends BaseController {
         header("Location: " . BASE_URL . "?url=recipe/index");
         exit;
     }
+    public function show($id) {
+    $recipe = $this->recipeModel->getRecipeById($id);
+    if (!$recipe) {
+        $_SESSION['flash'] = "Recette introuvable.";
+        header("Location: " . BASE_URL . "?url=recipe/index");
+        exit;
+    }
+    $this->render('Recipe/show_recipe', compact('recipe'));
+}
 }
