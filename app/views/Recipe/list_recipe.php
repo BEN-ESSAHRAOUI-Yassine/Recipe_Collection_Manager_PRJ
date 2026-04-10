@@ -9,14 +9,14 @@ $flash   = $flash   ?? null;
 <?php endif; ?>
 
 <h2>Mes Recettes</h2>
-<a href="<?= BASE_URL ?>?url=recipe/create">Ajouter une recette</a>
-<br><br>
+<div class="top-bar">
+<a class="action-btn btn-submit" href="<?= BASE_URL ?>?url=recipe/create">Ajouter une recette</a>
 
 <?php if (!empty($recipes)): ?>
 
-    <div class="search-filter-bar">
+    
 
-        <div class="search-wrap">
+        <div class="flex-gap">
             <input
                 type="text"
                 id="searchInput"
@@ -51,16 +51,12 @@ $flash   = $flash   ?? null;
         </div>
 
     </div>
-
-    <div class="results-count">
-        <span id="countVisible"><?= count($recipes) ?></span> recette affichee
-    </div>
-
-    <table border="1" cellpadding="5" cellspacing="0" id="recipeTable">
+    <div class="table-wrap">
+    <table id="recipeTable">
         <tr>
             <th>Titre</th>
             <th>Catégorie</th>
-            <th>Temps (min)</th>
+            <th>⏱️ Temps (min)</th>
             <th>Portions</th>
             <th>Actions</th>
         </tr>
@@ -75,10 +71,10 @@ $flash   = $flash   ?? null;
                 </a>
             </td>
             <td><?= htmlspecialchars($recipe['category_name'] ?? '') ?></td>
-            <td><?= intval($recipe['prep_time']) ?></td>
+            <td><?= ($time = intval($recipe['prep_time'])) <= 30 ? '⚡⏱️ ' . $time : '⏱️' . $time  ?></td>
             <td><?= htmlspecialchars($recipe['portions']) ?></td>
             <td>
-                <a href="<?= BASE_URL ?>?url=recipe/edit/<?= intval($recipe['id']) ?>">
+                <a class="action-btn btn-edit" href="<?= BASE_URL ?>?url=recipe/edit/<?= intval($recipe['id']) ?>">
                     Modifier
                 </a>
                 &nbsp;|&nbsp;
@@ -88,7 +84,7 @@ $flash   = $flash   ?? null;
                       style="display:inline; margin:0;">
                     <input type="hidden" name="csrf" value="<?= Security::csrf() ?>">
                     <button type="submit"
-                            style="background:none; border:none; color:blue; cursor:pointer; padding:0;">
+                            class="action-btn btn-delete">
                         Supprimer
                     </button>
                 </form>
@@ -96,7 +92,7 @@ $flash   = $flash   ?? null;
         </tr>
         <?php endforeach; ?>
     </table>
-
+    </div>
     <div class="no-results" id="noResults" style="display:none;">
         Aucune recette ne correspond à votre recherche.
     </div>
