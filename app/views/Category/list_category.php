@@ -16,6 +16,8 @@
 <?php endif; ?>
 
 <h3>Liste des catégories</h3>
+<a href="<?= BASE_URL ?>?url=category/create">Ajouter une category</a>
+<br><br>
 <table border="1" cellpadding="5">
     <tr><th>ID</th><th>Nom</th><th>Actions</th></tr>
     <?php foreach ($categories as $cat): ?>

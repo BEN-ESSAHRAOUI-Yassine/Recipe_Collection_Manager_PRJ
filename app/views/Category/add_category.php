@@ -8,4 +8,6 @@
     <label for="name">Nom de la catégorie</label>
     <input id="name" type="text" name="name" placeholder="Nom catégorie" required>
     <button type="submit">Ajouter</button>
+    <a href="<?= BASE_URL ?>?url=category/index">Reteur</a>
+<br><br>
 </form>
