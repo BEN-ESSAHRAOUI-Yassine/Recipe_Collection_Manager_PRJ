@@ -46,11 +46,9 @@
             <input type="hidden" name="csrf" value="<?= Security::csrf() ?>">
             <button type="submit" class="btn-delete"> Supprimer</button>
         </form>
-        <a href="<?= BASE_URL ?>?url=favorite/add/<?= intval($recipe['id_recipe']) ?>">
-            Favorite
-        </a>
+        <a class="action-btn btn-manage" href="<?= BASE_URL ?>?url=favorite/add/<?= intval($recipe['id']) ?>"> Favorite</a>
 
-        <form method="POST" action="<?= BASE_URL ?>?url=note/save/<?= intval($recipe['id_recipe']) ?>">
+        <form method="POST" action="<?= BASE_URL ?>?url=note/save/<?= intval($recipe['id']) ?>">
             <input type="text" name="note" placeholder="Your note">
             <input type="number" name="rating" min="1" max="5">
             <button type="submit">Save</button>
