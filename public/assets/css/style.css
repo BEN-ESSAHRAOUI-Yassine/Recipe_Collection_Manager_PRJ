@@ -155,6 +155,7 @@ button:active, .btn:active { transform: translateY(0); }
 .btn-logout  { background: var(--orange); }
 .btn-back    { background: #94A3B8; }
 .btn-success { background: #10B981; }
+.btn-favorite { background: #edbd2d; }
 
 /* ==============================
    FORMS

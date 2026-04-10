@@ -42,5 +42,5 @@ $flash      = $flash      ?? null;
     </select><br><br>
 
     <button type="submit">Ajouter la recette</button>
-    <a href="<?= BASE_URL ?>?url=recipe/index">Annuler</a>
+    <a class="action-btn btn-back" href="<?= BASE_URL ?>?url=recipe/index">Annuler</a>
 </form>

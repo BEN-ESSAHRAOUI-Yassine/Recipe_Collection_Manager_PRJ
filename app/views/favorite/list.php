@@ -2,10 +2,10 @@
 
 <?php foreach ($favorites as $r): ?>
 <div class="card">
-    <strong><?= htmlspecialchars($r['title']) ?></strong>
+    <a><strong><?= htmlspecialchars($r['title']) ?></strong></a>
 
     <div class="card-actions">
-        <a href="<?= BASE_URL ?>?url=favorite/remove/<?= $r['id'] ?>" class="btn-delete">
+        <a class="action-btn btn-delete" href="<?= BASE_URL ?>?url=favorite/remove/<?= $r['id'] ?>" class="btn-delete">
             Remove
         </a>
     </div>

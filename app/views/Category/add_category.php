@@ -4,10 +4,11 @@
         <?= htmlspecialchars($message) ?>
     </p>
 <?php endif; ?>
-<form method="POST" action="<?= BASE_URL ?>?url=category/store">
+<form class="form-card" method="POST" action="<?= BASE_URL ?>?url=category/store">
     <label for="name">Nom de la catégorie</label>
     <input id="name" type="text" name="name" placeholder="Nom catégorie" required>
-    <button type="submit">Ajouter</button>
-    <a href="<?= BASE_URL ?>?url=category/index">Reteur</a>
-<br><br>
+    <br><br>
+    <button class="action-btn btn-success" type="submit">Ajouter</button>
+    <a class="action-btn btn-back" href="<?= BASE_URL ?>?url=category/index">Retour</a>
+
 </form>
