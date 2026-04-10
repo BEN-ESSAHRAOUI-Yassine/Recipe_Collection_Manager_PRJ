@@ -58,7 +58,7 @@ git clone https://github.com/BEN-ESSAHRAOUI-Yassine/Recipe_Collection_Manager_PR
 ```
 3. **Import the database**
 -   Open phpMyAdmin.
--   Create a database surf_school.
+-   Create a database recipe_repo.
 -   Import the schema.sql file from the config folder.
 4. **Configure the project**
 
@@ -132,6 +132,7 @@ http://localhost/Recipe_Collection_Manager_PRJ/public/
             ├── add_recipe.php
             ├── edit_recipe.php
             ├── list_recipe.php
+            ├── show_recipe.php
 └── 📁config
     ├── database.php
     └── schema.sql
@@ -140,6 +141,12 @@ http://localhost/Recipe_Collection_Manager_PRJ/public/
         └── 📁css
             ├── style.css
         └── 📁imgs
+            ├── AddRecipe.png
+            ├── DashboardAdmin.png
+            ├── DashboardFavorite.png
+            ├── DashboardJira.png
+            ├── DashboardNotes.png
+            ├── DashboardRecipe.png
             ├── DB_Class_diagram.png
     └── index.php
 ```
@@ -149,7 +156,7 @@ http://localhost/Recipe_Collection_Manager_PRJ/public/
 ## Security Measures
 
 - Password hashing with `password_hash()` / `password_verify()`.
-- Role-based access control (Admin vs Surfer).
+- Role-based access control (Admin vs chef).
 - Prepared statements using PDO to prevent SQL injection.
 - Input validation and sanitization.
 - Session-based authentication.
@@ -220,30 +227,26 @@ You can use the following pre-seeded accounts to test the application:
 
 ## Screenshots
 
-### Dashboard
+### Admin Dashboard
 
 ![Dashboard Screenshot](public/assets/imgs/DashboardAdmin.png)
 
 ### Recipe list
 
-![Dashboard Screenshot](public/assets/imgs/DashboardAdmin.png)
+![Dashboard Screenshot](public/assets/imgs/DashboardRecipe.png)
 
 ### Add recipe
 
-![Dashboard Screenshot](public/assets/imgs/DashboardAdmin.png)
+![Dashboard Screenshot](public/assets/imgs/AddRecipe.png)
 
 ### Favorites page
 
-![Dashboard Screenshot](public/assets/imgs/DashboardAdmin.png)
+![Dashboard Screenshot](public/assets/imgs/DashboardFavorite.png)
 
 ### Notes page
 
-![Dashboard Screenshot](public/assets/imgs/DashboardAdmin.png)
-
-### Admin panel
-
-![Dashboard Screenshot](public/assets/imgs/DashboardAdmin.png)
+![Dashboard Screenshot](public/assets/imgs/DashboardNotes.png)
 
 ### Screenshot du board Jira final
 
-![Dashboard Screenshot](public/assets/imgs/DashboardAdmin.png)
+![Dashboard Screenshot](public/assets/imgs/DashboardJira.png)
